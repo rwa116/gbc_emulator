@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv) {
     Emulator emulator;
-    // emu.load_rom(argv[1]);
+    emulator.LoadRom(argv[1]);
     emulator.Run();
     SDL_Delay(2000);
     std::cout << "Hello, world!" << std::endl;

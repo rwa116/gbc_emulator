@@ -2,13 +2,18 @@
 #define CARTRIDGE_HPP
 
 #include <cstdint>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <sstream>
+#include <fstream>
 
 typedef struct {
     uint8_t entry[0x4];
     uint8_t logo[0x30];
     char title[0x10];
-    uint8_t manufacturer[0x4];
-    uint8_t cgb_flag;
+    // uint16_t manufacturer;
+    // uint8_t cgb_flag;
     uint16_t new_licensee_code;
     uint8_t sgb_flag;
     uint8_t cartridge_type;
@@ -29,9 +34,12 @@ public:
     uint8_t Read(uint16_t address);
     void Write(uint16_t address, uint8_t value);
 private:
+    std::string file_path;
     CartridgeHeader header;
     uint8_t* rom;
     uint8_t* ram;
+    std::string LicenseeCode();
+    std::string CartridgeType();
 };
 
 

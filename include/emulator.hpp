@@ -2,16 +2,18 @@
 #define EMULATOR_HPP
 
 #include "graphics.hpp"
+#include "cartridge.hpp"
 
 class Emulator {
 public:
     Emulator();
     ~Emulator();
     bool Init();
-    void LoadRom(const char* path);
+    bool LoadRom(const char* path);
     void Run();
 private:
     Graphics graphics;
+    Cartridge cartridge;
 };
 
 #endif // EMULATOR_HPP
