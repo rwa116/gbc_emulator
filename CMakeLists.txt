@@ -6,6 +6,8 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} emulator graphics cartridge)
+add_compile_options(-g)
+
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} emulator graphics cartridge cpu bus opcodes)
 
 add_subdirectory(src)

@@ -174,8 +174,8 @@ Cartridge::Cartridge() {
 }
 
 Cartridge::~Cartridge() {
-    delete[] rom;
-    delete[] ram;
+    // delete[] rom;
+    // delete[] ram;
 }
 
 bool Cartridge::Load(const char* path) {
@@ -193,6 +193,7 @@ bool Cartridge::Load(const char* path) {
     file.seekg(0, std::ios::beg);
 
     // Allocate memory
+    std::cout << "Allocating " << fileSize << " bytes for rom" << std::endl;
     rom = new uint8_t[fileSize];
 
     // Read rom into memory
@@ -230,6 +231,19 @@ bool Cartridge::Load(const char* path) {
 
     return true;
 }  
+
+uint8_t Cartridge::Read(uint16_t address) {
+    std::cout << "Size of rom: " << sizeof(rom) << std::endl;
+    std::cout << "Reading from ROM: " << std::hex << address << std::endl;
+    // for now ROM ONLY, TODO: MBC
+    return rom[address];
+}
+
+void Cartridge::Write(uint16_t address, uint8_t value) {
+    // for now ROM ONLY, TODO: MBC
+    std::cout << "Writing to ROM: " << std::hex << address << " " << (int)value << std::endl;
+    rom[address] = value;
+}
 
 std::string Cartridge::LicenseeCode() {
     if (header.old_licensee_code == 0x33) {
